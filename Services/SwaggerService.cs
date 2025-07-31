@@ -1,6 +1,6 @@
 using Microsoft.OpenApi.Models;
 
-namespace SwaggerService;
+namespace TJ_API.Services;
 
 public static class SwaggerHandler
 {
