@@ -1,4 +1,4 @@
-namespace TJControllerFile;
+namespace TJ_API.Controllers;
 
 public static class TJController
 {

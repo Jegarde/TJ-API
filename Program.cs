@@ -1,5 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
-using TJControllerFile;
+using TJ_API.Controllers;
 using SwaggerService;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
