@@ -1,5 +1,5 @@
-# 🪖 TJ, the REST API
-A minimal REST API for counting the mornings remaining in Finnish conscript service.☀️
+# 🇫🇮🪖 TJ, the REST API
+A minimal REST API for counting the mornings remaining in Finnish conscript service. TJ VÄBÄ! ☀️
 
 ## Minimalist Stack
 - ASP.NET Core
@@ -7,6 +7,15 @@ A minimal REST API for counting the mornings remaining in Finnish conscript serv
 
 ## Documentation
 Request format: GET `/{period: int[1/2]}/{year: int}/{duration: int}`
+
+### Pitfall
+The API has hardcoded the starting dates as follows:
+- First period (1/XX)
+    - 6.1.XXXX
+- Second period (2/XX)
+    - 7.7.XXXX
+
+This can lead to inaccuracies of a few days.
 
 ### Example Requests
 - GET `1/25/255`
@@ -41,3 +50,6 @@ dotnet run
 
 ## Licence
 Licenced under the MIT licence!
+
+## TJ VÄBÄ?
+Yes.
