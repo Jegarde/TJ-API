@@ -8,31 +8,33 @@ namespace TJ_API.Controllers;
 public class TJController : ControllerBase
 {
     /// Avoid validating period by simply having 1 & 2 as routes.
-    /// I'd imagine this makes the API the slightest bit more performant.
-    /// But I recognize that validating the period isn't very performant-heavy.
+    /// I'd imagine this makes the API sliiightly more performant.
+    /// But I recognize that this is probably unnecessary micro-optimization.
 
     [HttpGet("1/{year:int}/{duration:int}")]
     public IActionResult TJ_FirstPeriod(int year, int duration)
     {
-        return GenerateTJ(firstPeriod: true, year, duration);
+        return ReturnTJ(firstPeriod: true, year, duration);
     }
 
     [HttpGet("2/{year:int}/{duration:int}")]
     public IActionResult TJ_SecondPeriod(int year, int duration)
     {
-        return GenerateTJ(firstPeriod: false, year, duration);
+        return ReturnTJ(firstPeriod: false, year, duration);
     }
 
-    private OkObjectResult GenerateTJ(bool firstPeriod, int year, int duration)
+    private ObjectResult ReturnTJ(bool firstPeriod, int year, int duration)
     {
         // If year is given as (example) 25, add 2000 to it (2025)
         if (Utility.IntegerLength(year) == 2)
             // Assume it's the 21 century
             year += 2000;
 
-        ServiceDates service = new(firstPeriod, year, duration);
+        if (year < 1900 || year > 3000)
+            return BadRequest(new ErrorMessage("Year must be 1900 <= year <= 3000"));
 
-        TimeSpan tj = service.endingDate - DateTime.Now;
-        return Ok(tj.Days);
+        TJ tj = TJGenerator.GenerateTJ(firstPeriod, year, duration);
+
+        return Ok(tj);
     }
 }
