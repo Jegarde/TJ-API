@@ -5,7 +5,7 @@ public struct ServiceDates
     /// True = 1/{year}
     /// False = 2/{year}
     /// </summary>
-    public bool firstHalf;
+    public bool firstPeriod;
     public int year;
     public int duration;
 
@@ -14,7 +14,7 @@ public struct ServiceDates
 
     private void CalculateBeginningDate()
     {
-        if (firstHalf)
+        if (firstPeriod)
         {
             beginningDate = new(year, 1, 6);
         }
@@ -29,9 +29,9 @@ public struct ServiceDates
         endingDate = beginningDate.AddDays(duration);
     }
 
-    public ServiceDates(bool firstHalf, int year, int duration)
+    public ServiceDates(bool firstPeriod, int year, int duration)
     {
-        this.firstHalf = firstHalf;
+        this.firstPeriod = firstPeriod;
         this.year = year;
         this.duration = duration;
 
