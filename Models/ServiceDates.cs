@@ -1,12 +1,4 @@
 namespace TJ_API.Models;
-
-public enum Duration
-{
-    Short = 165,
-    Mid = 255,
-    Long = 347
-}
-
 public struct ServiceDates
 {
     /// <summary>
@@ -15,7 +7,7 @@ public struct ServiceDates
     /// </summary>
     public bool firstHalf;
     public int year;
-    public Duration duration;
+    public int duration;
 
     public DateTime beginningDate;
     public DateTime endingDate;
@@ -34,10 +26,10 @@ public struct ServiceDates
 
     private void CalculateEndingDate()
     {
-        endingDate = beginningDate.AddDays((int)duration);
+        endingDate = beginningDate.AddDays(duration);
     }
 
-    public ServiceDates(bool firstHalf, int year, Duration duration)
+    public ServiceDates(bool firstHalf, int year, int duration)
     {
         this.firstHalf = firstHalf;
         this.year = year;
