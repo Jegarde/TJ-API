@@ -1,8 +1,12 @@
 ﻿using TJ_API.Services;
 using TJ_API.Models;
+using System.Threading.RateLimiting;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+
+// Setup rate limits
+RateLimiterService.RateLimitInit(builder);
 
 // Setup Swagger docs
 SwaggerHandler.BuilderInit(builder);
@@ -17,6 +21,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+app.UseRateLimiter();
+
+
+
 
 app.MapFallback(async ctx =>
 {
