@@ -4,5 +4,7 @@ public record TJ(
     double Days,
     double Weeks,
     double Months,
-    double Seconds
+    double Seconds,
+    long StartDate,
+    long ReturnDate
 );

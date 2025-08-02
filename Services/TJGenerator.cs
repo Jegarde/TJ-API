@@ -35,6 +35,11 @@ public static class TJGenerator
         return $"{period}/{year}";
     }
 
+    private static long GetUnixTimestamp(DateTime date)
+    {
+        return ((DateTimeOffset)date).ToUnixTimeSeconds();
+    }
+
     public static TJ GenerateTJ(int period, int year, int duration)
     {
         if (!startingDates.TryGetValue(GenerateArrivalPatch(period, year), out DateTime beginningDate))
@@ -52,10 +57,12 @@ public static class TJGenerator
         TimeSpan tjSpan = endingDate - DateTime.Now;
 
         return new TJ(
-            Days:  Math.Round(tjSpan.TotalDays, 2),
+            Days: Math.Round(tjSpan.TotalDays, 2),
             Weeks: Math.Round(tjSpan.TotalDays / 7f, 2),
             Months: Math.Round(tjSpan.TotalDays / 30f, 2),
-            Seconds: Math.Round(tjSpan.TotalSeconds, 1)
+            Seconds: Math.Round(tjSpan.TotalSeconds, 1),
+            StartDate: GetUnixTimestamp(beginningDate),
+            ReturnDate: GetUnixTimestamp(endingDate)
         );
     }
 }
