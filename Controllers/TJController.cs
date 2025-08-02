@@ -9,13 +9,12 @@ record TJRequest(int Period, int Year, int Duration);
 [ApiController]
 public class TJController : ControllerBase
 {
-    [HttpGet("{period:int}/{year:int}/{duration:int}")]
-    public IActionResult TJ(int period, int year, int duration)
+    [HttpGet("{period:int}/{year:int}/{duration:int?}")]
+    public IActionResult TJ(int period, int year, int duration = 0)
     {
         TJRequest req = new(period, year, duration);
         return GenerateResponse(req);
     }
-
 
     private bool ValidateRequest(TJRequest req, out ObjectResult error)
     {
@@ -52,7 +51,7 @@ public class TJController : ControllerBase
             // Assume it's the 21 century
             year += 2000;
 
-        TJ tj = TJGenerator.GenerateTJ(req.Period == 1, year, req.Duration);
+        TJ tj = TJGenerator.GenerateTJ(req.Period, year, req.Duration);
         return Ok(tj);
     }
 }
