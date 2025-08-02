@@ -52,7 +52,7 @@ public class TJController : ControllerBase
             // Assume it's the 21 century
             year += 2000;
 
-        TJ tj = TJGenerator.GenerateTJ(req.Period == 1, year, req.Duration);
+        TJ tj = TJGenerator.GenerateTJ(req.Period, year, req.Duration);
         return Ok(tj);
     }
 }
