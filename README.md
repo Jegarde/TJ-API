@@ -2,8 +2,8 @@
 A minimal REST API for counting the mornings remaining in Finnish conscript service. TJ VÄBÄ! ☀️
 
 ## Minimalist Stack
-- ASP.NET Core
-- Swagger / OpenAPI
+- ASP.NET Core (9.0)
+- Swagger (6.5)
 
 ## Documentation
 Request format: GET `/{period: int[1/2]}/{year: int}/{duration: int = 0}`
